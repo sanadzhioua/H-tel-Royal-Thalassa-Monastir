@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soins du Visage d'Exception - Royal Elyssa Thalasso & Spa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Définition de la palette de design pour une cohérence parfaite */
+        :root {
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --color-primary: #0d9488; /* Teal-600 */
+            --color-secondary: #f59e0b; /* Amber-500 */
+            --color-background: #FBF9F6; /* Un fond crème très doux */
+            --color-text: #4a4a4a;
+            --color-heading: #1e293b; /* Slate-800 */
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            scroll-behavior: smooth;
+        }
+
+        .font-playfair { font-family: var(--font-display); }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            color: var(--color-heading);
+            font-weight: 700;
+        }
+
+        /* En-tête avec effet parallaxe pour une touche d'élégance */
+        .page-header-bg {
+            background-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 100%), url('https://img.freepik.com/photos-gratuite/vue-haut-rajeunissement-belle-femme-beneficiant-procedures-cosmetologie-dans-salon-beaute-dermatologie-mains-bleu-soins-sante-therapie-botox_197531-2783.jpg?w=1060');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Effet parallaxe */
+        }
+
+        /* Cartes de soins avec une animation de survol raffinée */
+        .facial-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .facial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+        }
+
+        /* Cartes des rituels Signature avec un design unique */
+        .ritual-card {
+            background-color: white;
+            border: 1px solid #f0e9e0; /* Bordure très subtile */
+            transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        }
+        .ritual-card:hover {
+            border-color: var(--color-secondary);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+        }
+
+        /* Styles des boutons */
+        .btn {
+            @apply font-semibold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2;
+        }
+        .btn-primary {
+            @apply btn bg-teal-600 hover:bg-teal-700 text-white focus:ring-teal-500;
+        }
+        .btn-secondary {
+            @apply btn bg-amber-500 hover:bg-amber-600 text-white focus:ring-amber-500;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAV BAR (identique pour la cohérence du site) -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                 <a href="#home" class="text-2xl font-playfair font-bold text-teal-700">
+                    Royal Elyssa <span class="text-amber-500">Spa</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="acceuil.html" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Accueil</a>
+                    <a href="catalogue-complet.html" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Catalogue</a>
+                    <a href="#" class="text-amber-500 font-semibold border-b-2 border-amber-500 pb-1">Soins du Visage</a>
+                    <a href="reserve.html" class="btn-primary !py-2 !px-5 !text-sm">Réserver</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-amber-500 focus:outline-none">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200">
+            <a href="acceuil.html" class="block px-6 py-3 text-gray-600 hover:bg-teal-50 hover:text-amber-500 transition-colors duration-200">Accueil</a>
+            <a href="catalogue-complet.html" class="block px-6 py-3 text-gray-600 hover:bg-teal-50 hover:text-amber-500 transition-colors duration-200">Catalogue</a>
+            <a href="#" class="block px-6 py-3 text-amber-500 bg-teal-50 font-semibold">Soins du Visage</a>
+            <a href="reserve.html" class="block px-6 py-3 text-gray-600 hover:bg-teal-50 hover:text-amber-500 transition-colors duration-200">Réserver</a>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header-bg text-white py-28 md:py-40">
+        <div class="container mx-auto px-6 text-center">
+            <div class="bg-black/50 backdrop-blur-sm p-8 md:p-12 rounded-xl inline-block">
+                <h1 class="font-playfair text-4xl sm:text-5xl md:text-6xl font-extrabold mb-3 tracking-tight">Soins du Visage d'Exception</h1>
+                <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto font-light">
+                    Révélez l'éclat de votre peau avec nos protocoles de soins sur-mesure.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto px-4 md:px-6 py-16">
+        <div class="text-sm text-gray-500 mb-10">
+            <a href="acceuil.html" class="hover:text-amber-500 transition-colors">Accueil</a> &gt; <span>Soins du Visage</span>
+        </div>
+
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl md:text-4xl font-playfair text-teal-700 mb-4">L'Art de Sublimer Votre Beauté</h2>
+            <p class="text-lg leading-relaxed text-gray-600">
+                Parce que chaque peau est unique, nos expertes réalisent un diagnostic précis pour vous offrir un soin parfaitement adapté. Découvrez des traitements conçus pour des résultats visibles et un bien-être profond.
+            </p>
+        </div>
+
+        <!-- Grille des Soins du Visage - Générée dynamiquement -->
+        <div id="facial-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            <!-- Les cartes de soins du visage seront injectées ici -->
+        </div>
+
+        <!-- Section Rituels Signature - Générée dynamiquement -->
+        <section class="mt-24">
+             <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl md:text-4xl font-playfair text-teal-700 mb-4">Nos Rituels Beauté Signature</h2>
+                <p class="text-lg leading-relaxed text-gray-600">
+                    Des expériences exclusives qui allient efficacité et évasion pour une sublimation totale.
+                </p>
+            </div>
+            <div id="rituals-container" class="space-y-12">
+                <!-- Les rituels signature seront injectés ici -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-800 text-gray-300 py-16 mt-20">
+        <div class="container mx-auto px-6 text-center">
+            <a href="#home" class="text-3xl font-playfair font-bold text-white hover:text-amber-400 transition mb-4 inline-block">
+                Royal Elyssa <span class="text-amber-400">Thalasso & Spa</span>
+            </a>
+            <p class="mb-2 text-gray-400">Route Touristique, BP 242, Skanes, 5000 Monastir, Tunisie</p>
+            <p class="mb-6 text-gray-400">Tél : (+216) 73 520 520 | Email : info@royalelyssa.com</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-tripadvisor"></i></a>
+            </div>
+            <p class="text-sm text-gray-500">&copy; <span id="currentYearFooter"></span> Royal Elyssa Thalasso & Spa. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+    // --- GESTION CENTRALISÉE DES DONNÉES ---
+    const facialsData = [
+        {
+            id: 'eclat-hydratant',
+            title: 'Soin Éclat Hydratant Fondamental',
+            imgSrc: 'https://www.thalgo-suisse.ch/site/uploaded/photos/fr_photos_fichier_2669.jpg',
+            idealForIcon: 'fas fa-seedling',
+            idealForText: 'Tous types de peaux',
+            description: 'Un véritable bain d\'hydratation pour une peau fraîche, repulpée et lumineuse. Le soin coup d\'éclat par excellence.',
+            benefits: ['Hydratation intense et durable', 'Teint unifié et radieux', 'Peau repulpée et lissée', 'Confort immédiat'],
+            duration: 60,
+            price: 90
+        },
+        {
+            id: 'anti-age-global',
+            title: 'Soin Prestige Anti-Âge Global',
+            imgSrc: 'https://www.thalgo.re/site/uploaded/photos/fr_photos_fichier_2668.jpg',
+            idealForIcon: 'fas fa-gem',
+            idealForText: 'Peaux matures',
+            description: 'Un protocole d\'exception pour lutter contre les signes du temps. Modelage liftant, sérums concentrés et masque raffermissant.',
+            benefits: ['Réduction des rides et ridules', 'Amélioration de la fermeté', 'Ovale du visage redessiné', 'Teint lumineux'],
+            duration: 75,
+            price: 160
+        },
+        {
+            id: 'purifiant-equilibrant',
+            title: 'Soin Purifiant Équilibrant Intense',
+            imgSrc: 'https://www.mademoisellerelax.fr/wp-content/uploads/2018/06/mademoiselle-relax-soins-visage-2.jpg',
+            idealForIcon: 'fas fa-stream',
+            idealForText: 'Peaux mixtes à grasses',
+            description: 'Conçu pour clarifier et matifier, ce soin nettoie en profondeur, désincruste les pores et régule la production de sébum.',
+            benefits: ['Élimine les impuretés', 'Réduit les imperfections', 'Matification durable', 'Grain de peau affiné'],
+            duration: 60,
+            price: 110
+        },
+        {
+            id: 'douceur-apaisant',
+            title: 'Soin Douceur Apaisant Cocon',
+            imgSrc: 'https://www.villathalgo.com/1330-medium_default/soin-fondamental-de-la-mer-bilan-beaute-offert.jpg',
+            idealForIcon: 'fas fa-feather-alt',
+            idealForText: 'Peaux sensibles',
+            description: 'Un havre de paix pour les peaux délicates. Ce soin réduit rougeurs et irritations tout en restaurant la barrière cutanée.',
+            benefits: ['Apaise l\'inconfort', 'Réduit les rougeurs', 'Renforce la barrière cutanée', 'Hydrate et adoucit'],
+            duration: 60,
+            price: 120
+        },
+        {
+            id: 'detox-urbain',
+            title: 'Soin Détox Urbain Oxygénant',
+            imgSrc: 'https://www.challenges.fr/_ipx/f_webp&enlarge_true&fit_cover&s_680x420/cha/static/s3fs-public/2023-02/2-traitement-aquafacial-estheclinic.jpg%3FVersionId=yZkixoDgBnMClj3G2lKvUe0FlImPwVEk',
+            idealForIcon: 'fas fa-wind',
+            idealForText: 'Peaux exposées',
+            description: 'Une bouffée d\'air frais pour les peaux asphyxiées par la pollution. Il élimine les toxines et redonne vitalité et éclat.',
+            benefits: ['Détoxifie en profondeur', 'Protège des agressions', 'Relance l\'éclat du teint', 'Peau revitalisée'],
+            duration: 75,
+            price: 140
+        },
+        {
+            id: 'regard-petillant',
+            title: 'Soin Regard Pétillant Revitalisant',
+            imgSrc: 'https://sekoya-spa.fr/wp-content/uploads/2024/06/soin-visage-contour-des-yeux-Precision-REGARD-phytoceane-Sekoya-spa-et-Coiffure-detente-relaxation-institut-de-beaute-massage-soin-spa-coiffure-lezoux.webp',
+            idealForIcon: 'fas fa-eye',
+            idealForText: 'Focus contour des yeux',
+            description: 'Dédié à la zone délicate du contour de l\'œil, ce soin cible poches, cernes et ridules pour un regard illuminé et rajeuni.',
+            benefits: ['Atténue poches et cernes', 'Lisse les ridules', 'Défatigue et illumine', 'Hydrate et protège'],
+            duration: 30,
+            price: 70
+        }
+    ];
+
+    const ritualsData = [
+        {
+            id: 'eclat-royal',
+            title: 'Rituel Éclat Royal',
+            imgSrc: 'https://www.thalgo-belgium.com/site/uploaded/photos/photos_fichier_1429.jpg',
+            tagline: 'L\'alliance parfaite entre visage et corps.',
+            description: 'Plongez dans une bulle de bien-être avec ce rituel complet qui sublime votre peau tout en apaisant votre esprit. Une parenthèse enchantée pour rayonner de beauté et de sérénité.',
+            includes: [
+                { icon: 'fas fa-diagnoses', text: 'Diagnostic de peau personnalisé' },
+                { icon: 'fas fa-spa', text: 'Soin Visage Éclat Hydratant (60 min)' },
+                { icon: 'fas fa-hand-sparkles', text: 'Modelage relaxant du dos (20 min)' },
+                { icon: 'fas fa-mug-hot', text: 'Pause infusion bienfaisante' }
+            ],
+            duration: '90 min',
+            price: 220,
+            imagePosition: 'left'
+        },
+        {
+            id: 'jeunesse-absolue',
+            title: 'Rituel Jeunesse Absolue',
+            imgSrc: 'https://www.lechamarelspa.fr/wp-content/uploads/2016/10/soin_visage_chamarel_single.jpg',
+            tagline: 'Une cure de jouvence intensive et ciblée.',
+            description: 'Ce programme anti-âge d\'exception combine des actifs précieux pour un effet lifting spectaculaire et une régénération profonde.',
+            includes: [
+                { icon: 'fas fa-microscope', text: 'Analyse cutanée approfondie' },
+                { icon: 'fas fa-magic', text: 'Soin Prestige Anti-Âge Global (75 min)' },
+                { icon: 'fas fa-eye', text: 'Soin Regard Pétillant Revitalisant (30 min)' },
+                { icon: 'fas fa-gift', text: 'Application d\'un sérum booster' }
+            ],
+            duration: '120 min',
+            price: 300,
+            imagePosition: 'right'
+        }
+    ];
+
+    /**
+     * Crée le code HTML pour une carte de soin du visage.
+     */
+    function createFacialCard(facial) {
+        const benefitsHtml = facial.benefits.map(benefit =>
+            `<li class="flex items-start"><i class="fas fa-check-circle text-amber-500 mt-1 mr-2 flex-shrink-0"></i><span>${benefit}</span></li>`
+        ).join('');
+
+        return `
+            <div class="facial-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full group">
+                <div class="overflow-hidden relative">
+                    <img src="${facial.imgSrc}" alt="Image pour ${facial.title}" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Indisponible';">
+                    <div class="absolute top-3 right-3 bg-white/80 backdrop-blur-sm text-teal-800 text-xs font-semibold px-3 py-1 rounded-full flex items-center shadow">
+                        <i class="${facial.idealForIcon} mr-1.5"></i> ${facial.idealForText}
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-bold font-playfair mb-2">${facial.title}</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-5 flex-grow">${facial.description}</p>
+                    <h4 class="font-bold text-gray-800 mb-3">Principaux Bienfaits :</h4>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-6">${benefitsHtml}</ul>
+                    <div class="mt-auto pt-5 border-t border-gray-200">
+                        <div class="flex justify-between items-center text-lg mb-5">
+                            <span class="text-gray-600">${facial.duration} min</span>
+                            <span class="font-bold text-teal-600">${facial.price} TND</span>
+                        </div>
+                        <a href="reserve.html?soin=${facial.id}" class="btn-primary w-full text-center block"><i class="fas fa-calendar-check mr-2"></i> Réserver ce Soin</a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    /**
+     * Crée le code HTML pour une carte de rituel signature.
+     */
+    function createRitualCard(ritual) {
+        const includesHtml = ritual.includes.map(item =>
+            `<li class="flex items-center"><i class="${item.icon} text-teal-500 mr-3 text-lg w-6 text-center"></i><span>${item.text}</span></li>`
+        ).join('');
+
+        const imagePart = `
+            <div class="md:w-2/5 p-4">
+                <img src="${ritual.imgSrc}" alt="Image pour ${ritual.title}" class="rounded-lg shadow-md w-full h-full object-cover aspect-square" onerror="this.onerror=null;this.src='https://placehold.co/600x600/cccccc/ffffff?text=Image+Indisponible';">
+            </div>`;
+
+        const textPart = `
+            <div class="md:w-3/5 p-6 md:p-10">
+                <h3 class="text-3xl font-playfair font-extrabold text-teal-700">${ritual.title}</h3>
+                <p class="font-playfair text-amber-600 text-lg italic my-3">${ritual.tagline}</p>
+                <p class="text-gray-700 mb-6 leading-relaxed">${ritual.description}</p>
+                <h4 class="font-bold text-gray-800 mb-3">Ce rituel inclut :</h4>
+                <ul class="space-y-2 mb-6 text-gray-700">${includesHtml}</ul>
+                <div class="flex flex-col sm:flex-row justify-between items-center mt-6 pt-6 border-t border-gray-200/80">
+                    <p class="font-playfair font-bold text-xl text-teal-600 mb-4 sm:mb-0">${ritual.duration} | ${ritual.price} TND</p>
+                    <a href="reserve.html?rituel=${ritual.id}" class="btn-primary">Réserver ce Rituel</a>
+                </div>
+            </div>`;
+
+        const orderClass = ritual.imagePosition === 'right' ? 'md:flex-row-reverse' : '';
+
+        return `<div class="ritual-card rounded-2xl shadow-sm overflow-hidden md:flex ${orderClass}">${imagePart}${textPart}</div>`;
+    }
+
+    // --- SCRIPTS D'INITIALISATION ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const facialGrid = document.getElementById('facial-grid');
+        if (facialGrid) {
+            facialsData.forEach(facial => {
+                facialGrid.innerHTML += createFacialCard(facial);
+            });
+        }
+
+        const ritualsContainer = document.getElementById('rituals-container');
+        if (ritualsContainer) {
+            ritualsData.forEach(ritual => {
+                ritualsContainer.innerHTML += createRitualCard(ritual);
+            });
+        }
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        const yearSpan = document.getElementById('currentYearFooter');
+        if (yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+    });
+    </script>
+</body>
+</html>

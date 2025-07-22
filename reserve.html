@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservez Votre Soin - Royal Elyssa Thalasso & Spa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f8f9fa;
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .btn-primary {
+            @apply bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5;
+        }
+        .btn-gold {
+            @apply bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5;
+        }
+
+        /* Catalogue Soins Styling */
+        .catalogue-section {
+            @apply mb-8; /* Space between categories */
+        }
+        .catalogue-category-title {
+            @apply font-playfair text-2xl text-teal-700 font-bold mb-4 pb-2 border-b-2 border-teal-100 flex items-center;
+        }
+        .catalogue-category-title i {
+            @apply mr-3 text-amber-500; /* Icon color */
+        }
+        .catalogue-item {
+            @apply bg-white p-4 rounded-lg shadow-lg mb-4 flex justify-between items-start hover:shadow-xl transition-shadow duration-300;
+        }
+        .item-info {
+            @apply flex-grow pr-4;
+        }
+        .item-info h4 {
+            @apply font-semibold text-lg text-gray-800 mb-1;
+        }
+        .item-info .description {
+            @apply text-sm text-gray-600 mb-1;
+        }
+        .item-info .price {
+            @apply text-md font-semibold text-teal-600;
+        }
+        .item-info .cure-components { /* For cure and ritual descriptions */
+            @apply text-xs text-gray-500 italic mt-1;
+        }
+        .item-selection .checkbox-custom {
+            @apply h-6 w-6 text-teal-600 border-gray-300 rounded-md focus:ring-2 focus:ring-teal-400 focus:ring-offset-1 cursor-pointer flex-shrink-0 mt-1;
+        }
+
+
+        /* Form elements styling */
+        input[type="date"].date-input,
+        select, input[type="text"], input[type="email"], input[type="tel"] {
+            @apply mt-1 block w-full py-2.5 px-3.5 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 sm:text-sm;
+        }
+
+        /* Section title styling */
+        .section-title-wrapper {
+            @apply flex items-center mb-4;
+        }
+        .section-step-circle {
+            @apply bg-teal-500 text-white rounded-full h-10 w-10 flex items-center justify-center text-xl font-bold font-playfair mr-3 flex-shrink-0;
+        }
+        .section-title {
+            @apply font-playfair text-2xl md:text-3xl font-bold text-teal-700 !mb-0;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            @apply bg-white p-6 rounded-xl shadow-2xl sticky top-24;
+        }
+        .decorative-line-small {
+            width: 100%;
+            height: 2px;
+            @apply bg-teal-100 my-3;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="acceuil.html" class="text-2xl font-playfair font-bold text-teal-700 hover:text-amber-500 transition">
+                Royal Elyssa <span class="text-amber-500">Thalasso & Spa</span>
+            </a>
+            <a href="acceuil.html#contact-footer" class="text-gray-600 hover:text-amber-500 transition flex items-center">
+                <i class="fas fa-phone mr-2"></i> Contactez-nous
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 md:px-6 py-12 mt-8">
+        <header class="text-center mb-12">
+            <h1 class="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-teal-700">Réservez Votre Expérience Bien-Être</h1>
+            <p class="text-lg text-gray-600 mt-3">Planifiez votre évasion en quelques étapes simples.</p>
+        </header>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-8">
+                <section id="date-section" class="bg-white p-6 rounded-xl shadow-2xl">
+                    <div class="section-title-wrapper">
+                        <div class="section-step-circle">1</div>
+                        <h2 class="section-title">Choisissez Votre Date</h2>
+                    </div>
+                    <label for="selected_date_field" class="block text-sm font-medium text-gray-700 mt-4">Date souhaitée pour les soins :</label>
+                    <input type="date" id="selected_date_field" name="selected_date_field" class="date-input">
+                    <p id="selected-date-display" class="mt-3 text-teal-600 font-semibold"></p>
+                </section>
+
+                <section id="choices-catalogue-section" class="bg-white p-6 rounded-xl shadow-2xl">
+                        <div class="section-title-wrapper">
+                            <div class="section-step-circle">2</div>
+                            <h2 class="section-title">Composez Votre Journée</h2>
+                        </div>
+                        <div class="mt-6 space-y-6">
+
+                            <div class="catalogue-section">
+                                <h3 class="catalogue-category-title"><i class="fas fa-star"></i>Nos Cures Signature</h3>
+                                <div class="space-y-4">
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Cure Détente Absolue</h4><p class="cure-components">Inclus: Bain Hydromassant, Massage Californien (60 min), Soin Visage Éclat.</p><p class="price">250 TND <span class="text-xs text-green-600">(Économie de 20 TND)</span></p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="cure" value="cure_detente_absolue"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Cure Évasion Marine</h4><p class="cure-components">Inclus: Enveloppement d'Algues, Douche à Affusion, Massage Balinais (75 min).</p><p class="price">240 TND <span class="text-xs text-green-600">(Économie de 20 TND)</span></p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="cure" value="cure_evasion_marine"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Cure Prestige & Beauté</h4><p class="cure-components">Inclus: Soin Visage Éclat, Manucure Spa, Coupe Signature Eric Zemmour.</p><p class="price">Sur consultation</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="cure" value="cure_prestige_beaute"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rituels Beauté Signature -->
+                            <div class="catalogue-section">
+                                <h3 class="catalogue-category-title"><i class="fas fa-gem"></i>Nos Rituels Beauté Signature</h3>
+                                <div class="space-y-4">
+                                    <div class="catalogue-item">
+                                        <div class="item-info">
+                                            <h4>Rituel Éclat Royal</h4>
+                                            <p class="cure-components">Diagnostic peau, Soin Visage Éclat Hydratant (60 min), Modelage dos & nuque (20 min), Infusion.</p>
+                                            <p class="price">220 TND</p>
+                                        </div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="rituel_signature" value="rituel_eclat_royal"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info">
+                                            <h4>Rituel Jeunesse Absolue</h4>
+                                            <p class="cure-components">Analyse cutanée high-tech, Soin Visage Prestige Anti-Âge (75 min), Soin Regard Pétillant (30 min), Sérum booster.</p>
+                                            <p class="price">300 TND</p>
+                                        </div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="rituel_signature" value="rituel_jeunesse_absolue"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="catalogue-section">
+                                <h3 class="catalogue-category-title"><i class="fas fa-water"></i>Thalassothérapie (Soins Individuels)</h3>
+                                <div class="space-y-4">
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Bain Hydromassant aux Essences Marines</h4><p class="description">Durée: 30 min</p><p class="price">50 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_thalasso" value="bain_hydromassant"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Enveloppement d'Algues Reminéralisantes</h4><p class="description">Durée: 45 min</p><p class="price">70 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_thalasso" value="enveloppement_algues"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Douche à Affusion Vivifiante</h4><p class="description">Durée: 20 min</p><p class="price">40 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_thalasso" value="douche_affusion"></div>
+                                    </div>
+                                    <!-- Nouveaux soins thalasso de la page thalasso_soins_v2 -->
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Gommage aux Sels Marins & Huiles Essentielles</h4><p class="description">Durée: 30 min</p><p class="price">55 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_thalasso" value="gommage_sels_marins"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Hydrojet Relaxant (Lit Massant)</h4><p class="description">Durée: 25 min</p><p class="price">60 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_thalasso" value="hydrojet"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Pressothérapie Drainage Lymphatique</h4><p class="description">Durée: 30 min</p><p class="price">65 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_thalasso" value="pressotherapie"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="catalogue-section">
+                                <h3 class="catalogue-category-title"><i class="fas fa-hand-sparkles"></i>Massages (Soins Individuels)</h3>
+                                <div class="space-y-4">
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Massage Californien Apaisant</h4><p class="description">60 min / 90 min</p><p class="price">120 TND / 170 TND</p></div>
+                                        <div class="item-selection">
+                                            <select name="soin_massage_option" class="checkbox-custom !w-auto !h-auto !py-1 !px-2 !text-xs mr-2 massage-option" data-value-base="massage_californien">
+                                                <option value="massage_californien_60">60 min - 120 TND</option>
+                                                <option value="massage_californien_90">90 min - 170 TND</option>
+                                            </select>
+                                            <input type="checkbox" class="checkbox-custom massage-checkbox" data-target-select="massage_californien">
+                                        </div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Massage Balinais Exotique</h4><p class="description">Durée: 75 min</p><p class="price">150 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_massage" value="massage_balinais"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Massage aux Pierres Chaudes</h4><p class="description">Durée: 90 min</p><p class="price">180 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_massage" value="massage_pierres_chaudes"></div>
+                                    </div>
+                                     <!-- Nouveaux massages de la page massages_monde_v1 -->
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Massage Suédois Dynamisant</h4><p class="description">60 min / 90 min</p><p class="price">130 TND / 180 TND</p></div>
+                                         <div class="item-selection">
+                                            <select name="soin_massage_option" class="checkbox-custom !w-auto !h-auto !py-1 !px-2 !text-xs mr-2 massage-option" data-value-base="massage_suedois">
+                                                <option value="massage_suedois_60">60 min - 130 TND</option>
+                                                <option value="massage_suedois_90">90 min - 180 TND</option>
+                                            </select>
+                                            <input type="checkbox" class="checkbox-custom massage-checkbox" data-target-select="massage_suedois">
+                                        </div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Réflexologie Plantaire Équilibrante</h4><p class="description">45 min / 60 min</p><p class="price">90 TND / 120 TND</p></div>
+                                        <div class="item-selection">
+                                            <select name="soin_massage_option" class="checkbox-custom !w-auto !h-auto !py-1 !px-2 !text-xs mr-2 massage-option" data-value-base="reflexologie_plantaire">
+                                                <option value="reflexologie_plantaire_45">45 min - 90 TND</option>
+                                                <option value="reflexologie_plantaire_60">60 min - 120 TND</option>
+                                            </select>
+                                            <input type="checkbox" class="checkbox-custom massage-checkbox" data-target-select="reflexologie_plantaire">
+                                        </div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Massage Ayurvédique Abhyanga</h4><p class="description">Durée: 75 min</p><p class="price">160 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_massage" value="massage_ayurvedique"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="catalogue-section">
+                                <h3 class="catalogue-category-title"><i class="fas fa-paint-brush"></i>Soins Esthétiques (Individuels)</h3>
+                                <div class="space-y-4">
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Soin Éclat Hydratant Fondamental</h4><p class="description">Durée: 60 min</p><p class="price">90 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_esthetique" value="soin_visage_eclat_fondamental"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Soin Prestige Anti-Âge Global</h4><p class="description">Durée: 75 min</p><p class="price">160 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_esthetique" value="soin_visage_anti_age_global"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Soin Purifiant Équilibrant Intense</h4><p class="description">Durée: 60 min</p><p class="price">110 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_esthetique" value="soin_visage_purifiant_intense"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Soin Douceur Apaisant Cocon</h4><p class="description">Durée: 60 min</p><p class="price">120 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_esthetique" value="soin_visage_douceur_cocon"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Soin Détox Urbain Oxygénant</h4><p class="description">Durée: 75 min</p><p class="price">140 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_esthetique" value="soin_visage_detox_urbain"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Soin Regard Pétillant Revitalisant</h4><p class="description">Durée: 30 min</p><p class="price">70 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_esthetique" value="soin_visage_regard_petillant"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Manucure Spa Complète</h4><p class="description">Durée: 45 min</p><p class="price">60 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_esthetique" value="manucure_spa"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Pédicure Royale</h4><p class="description">Durée: 60 min</p><p class="price">75 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_esthetique" value="pedicure_royale"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="catalogue-section">
+                                <h3 class="catalogue-category-title"><i class="fas fa-cut"></i>Coin Beauté Eric Zemmour</h3>
+                                <div class="space-y-4">
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Coupe Signature Eric Zemmour</h4><p class="price">Sur consultation</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_eric_zemmour" value="coupe_signature"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Coloration Expert & Balayage</h4><p class="price">Sur consultation</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_eric_zemmour" value="coloration_expert"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Soin Capillaire de Luxe</h4><p class="description">Durée: 60 min</p><p class="price">150 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="soin_eric_zemmour" value="soin_capillaire_luxe"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="catalogue-section">
+                                <h3 class="catalogue-category-title"><i class="fas fa-door-open"></i>Accès Espace Bien-être</h3>
+                                <div class="space-y-4">
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Accès Piscine Intérieure Chauffée</h4><p class="description">Par personne</p><p class="price">30 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="access" value="access_piscine"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Accès Hammam Traditionnel</h4><p class="description">Par personne</p><p class="price">40 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="access" value="access_hammam"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Accès Sauna Finlandais</h4><p class="description">Par personne</p><p class="price">35 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="access" value="access_sauna"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Accès Salle de Sport Équipée</h4><p class="description">Par personne</p><p class="price">25 TND</p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="access" value="access_salle_sport"></div>
+                                    </div>
+                                    <div class="catalogue-item">
+                                        <div class="item-info"><h4>Pass Journée Bien-être Complet</h4><p class="cure-components">Piscine, Hammam, Sauna, Salle de Sport.</p><p class="price">100 TND <span class="text-xs text-green-600">(Économie de 30 TND)</span></p></div>
+                                        <div class="item-selection"><input type="checkbox" class="checkbox-custom" name="access" value="pass_journee_bien_etre"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </section>
+
+                <section id="personal-info-section" class="bg-white p-6 rounded-xl shadow-2xl">
+                        <div class="section-title-wrapper">
+                            <div class="section-step-circle">3</div>
+                            <h2 class="section-title">Vos Coordonnées</h2>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mt-4">
+                            <div>
+                                <label for="full_name" class="block text-sm font-medium text-gray-700 mb-1">Nom Complet <span class="text-red-500">*</span></label>
+                                <input type="text" id="full_name" name="full_name" required placeholder="Ex: Prénom Nom">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" required placeholder="Ex: email@example.com">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone <span class="text-red-500">*</span></label>
+                                <input type="tel" id="phone" name="phone" required placeholder="Ex: +216 XX XXX XXX">
+                            </div>
+                            <div>
+                                <label for="requests" class="block text-sm font-medium text-gray-700 mb-1">Demandes spéciales (optionnel)</label>
+                                <input type="text" id="requests" name="requests" placeholder="Allergies, préférences...">
+                            </div>
+                        </div>
+                </section>
+            </div>
+
+            <aside class="lg:col-span-1">
+                <div class="summary-box">
+                    <h2 class="font-playfair text-2xl font-bold text-teal-700 mb-2 text-center">Votre Réservation</h2>
+                    <div class="decorative-line-small !bg-teal-500 !mx-auto mb-4"></div>
+
+                    <div id="summary-date" class="mb-4 pb-3">
+                        <p class="font-semibold text-gray-700">Date Sélectionnée:</p>
+                        <p class="text-teal-600 text-lg">-</p>
+                    </div>
+                    <div class="decorative-line-small !my-2"></div>
+                    <div id="summary-soins" class="mb-4 pb-3">
+                        <p class="font-semibold text-gray-700">Sélection:</p>
+                        <ul id="summary-soins-list" class="list-none text-gray-700 text-sm space-y-1.5 mt-2">
+                            <li class="text-gray-500 italic">Aucune sélection</li>
+                        </ul>
+                    </div>
+                    <div class="decorative-line-small !my-2"></div>
+                    <div id="summary-total" class="mb-6 pt-2">
+                        <p class="font-semibold text-xl flex justify-between items-center">
+                            <span>Total Estimé:</span>
+                            <span id="total-price" class="text-teal-600 font-bold">0 TND</span>
+                        </p>
+                        <p class="text-xs text-gray-500 mt-1">Les prix finaux pour les services "sur consultation" seront confirmés par notre équipe.</p>
+                    </div>
+
+                    <button id="confirm-booking-btn" class="btn-primary w-full text-lg">
+                        <i class="fas fa-check-circle mr-2"></i>Confirmer la Demande
+                    </button>
+                    <p id="confirmation-message" class="mt-4 text-center text-green-600 font-semibold hidden"></p>
+                    <p class="text-xs text-gray-500 mt-3 text-center">Ceci est une demande de réservation. Notre équipe vous contactera sous peu pour finaliser.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; <span id="currentYearFooter"></span> Royal Elyssa Thalasso & Spa. Tous droits réservés.</p>
+            <p class="text-sm">Route Touristique, Skanes, 5000 Monastir, Tunisie</p>
+        </div>
+    </footer>
+
+    <script>
+        const selectedDateField = document.getElementById('selected_date_field');
+        const selectedDateDisplay = document.getElementById('selected-date-display');
+
+        const summaryDateEl = document.querySelector('#summary-date p:last-child');
+        const summarySoinsListEl = document.getElementById('summary-soins-list');
+        const totalPriceEl = document.getElementById('total-price');
+        const confirmBookingBtn = document.getElementById('confirm-booking-btn');
+        const confirmationMessageEl = document.getElementById('confirmation-message');
+
+        const todayISO = new Date().toISOString().split('T')[0];
+        selectedDateField.setAttribute('min', todayISO);
+
+        selectedDateField.addEventListener('change', () => {
+            const dateValue = selectedDateField.value;
+            if (dateValue) {
+                const dateObj = new Date(dateValue);
+                const userTimezoneOffset = dateObj.getTimezoneOffset() * 60000;
+                const correctedDate = new Date(dateObj.getTime() + userTimezoneOffset);
+
+                const dayNames = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+                const monthNames = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+                const formattedDate = `${dayNames[correctedDate.getDay()]}, ${correctedDate.getDate()} ${monthNames[correctedDate.getMonth()]} ${correctedDate.getFullYear()}`;
+                selectedDateDisplay.textContent = `Date sélectionnée : ${formattedDate}`;
+                summaryDateEl.textContent = formattedDate;
+            } else {
+                selectedDateDisplay.textContent = '';
+                summaryDateEl.textContent = '-';
+            }
+            updateSummary();
+        });
+
+        const soinsData = {
+            // Cures
+            "cure_detente_absolue": { name: "Cure Détente Absolue", price: 250, type: "cure" },
+            "cure_evasion_marine": { name: "Cure Évasion Marine", price: 240, type: "cure" },
+            "cure_prestige_beaute": { name: "Cure Prestige & Beauté", price: 0, consultation: true, type: "cure" },
+
+            // Rituels Beauté Signature
+            "rituel_eclat_royal": { name: "Rituel Éclat Royal", price: 220, type: "rituel", description: "Diag. peau, Soin Visage Éclat (60m), Mod. dos (20m), Infusion" },
+            "rituel_jeunesse_absolue": { name: "Rituel Jeunesse Absolue", price: 300, type: "rituel", description: "Analyse high-tech, Soin Anti-Âge (75m), Soin Regard (30m), Sérum" },
+
+            // Thalasso
+            "bain_hydromassant": { name: "Bain Hydromassant", price: 50, type: "thalasso", duration: "30 min" },
+            "enveloppement_algues": { name: "Enveloppement d'Algues", price: 70, type: "thalasso", duration: "45 min" },
+            "douche_affusion": { name: "Douche à Affusion", price: 40, type: "thalasso", duration: "20 min" },
+            "gommage_sels_marins": { name: "Gommage Sels Marins & Huiles Ess.", price: 55, type: "thalasso", duration: "30 min"},
+            "hydrojet": { name: "Hydrojet Relaxant", price: 60, type: "thalasso", duration: "25 min"},
+            "pressotherapie": { name: "Pressothérapie Drainage Lymph.", price: 65, type: "thalasso", duration: "30 min"},
+
+            // Massages
+            "massage_californien_60": { name: "Massage Californien (60 min)", price: 120, type: "massage" },
+            "massage_californien_90": { name: "Massage Californien (90 min)", price: 170, type: "massage" },
+            "massage_balinais": { name: "Massage Balinais (75 min)", price: 150, type: "massage" },
+            "massage_pierres_chaudes": { name: "Massage Pierres Chaudes (90 min)", price: 180, type: "massage" },
+            "massage_suedois_60": { name: "Massage Suédois (60 min)", price: 130, type: "massage" },
+            "massage_suedois_90": { name: "Massage Suédois (90 min)", price: 180, type: "massage" },
+            "reflexologie_plantaire_45": { name: "Réflexologie Plantaire (45 min)", price: 90, type: "massage" },
+            "reflexologie_plantaire_60": { name: "Réflexologie Plantaire (60 min)", price: 120, type: "massage" },
+            "massage_ayurvedique": { name: "Massage Ayurvédique Abhyanga (75 min)", price: 160, type: "massage" },
+
+            // Soins Esthétiques (incluant les nouveaux soins visage)
+            "soin_visage_eclat_fondamental": { name: "Soin Éclat Hydratant Fondamental", price: 90, type: "esthetique", duration: "60 min" },
+            "soin_visage_anti_age_global": { name: "Soin Prestige Anti-Âge Global", price: 160, type: "esthetique", duration: "75 min" },
+            "soin_visage_purifiant_intense": { name: "Soin Purifiant Équilibrant Intense", price: 110, type: "esthetique", duration: "60 min" },
+            "soin_visage_douceur_cocon": { name: "Soin Douceur Apaisant Cocon", price: 120, type: "esthetique", duration: "60 min" },
+            "soin_visage_detox_urbain": { name: "Soin Détox Urbain Oxygénant", price: 140, type: "esthetique", duration: "75 min" },
+            "soin_visage_regard_petillant": { name: "Soin Regard Pétillant Revitalisant", price: 70, type: "esthetique", duration: "30 min" },
+            "manucure_spa": { name: "Manucure Spa", price: 60, type: "esthetique", duration: "45 min" },
+            "pedicure_royale": { name: "Pédicure Royale", price: 75, type: "esthetique", duration: "60 min" },
+
+            // Eric Zemmour
+            "coupe_signature": { name: "Coupe Signature EZ", price: 0, consultation: true, type: "coiffure" },
+            "coloration_expert": { name: "Coloration Expert EZ", price: 0, consultation: true, type: "coiffure" },
+            "soin_capillaire_luxe": { name: "Soin Capillaire Luxe EZ", price: 150, type: "coiffure", duration: "60 min" },
+
+            // Accès Espace Bien-être
+            "access_piscine": { name: "Accès Piscine", price: 30, type: "access" },
+            "access_hammam": { name: "Accès Hammam", price: 40, type: "access" },
+            "access_sauna": { name: "Accès Sauna", price: 35, type: "access" },
+            "access_salle_sport": { name: "Accès Salle de Sport", price: 25, type: "access" },
+            "pass_journee_bien_etre": { name: "Pass Journée Bien-être", price: 100, type: "access" }
+        };
+
+        const allCheckboxes = document.querySelectorAll('input[type="checkbox"].checkbox-custom');
+        const massageOptionSelects = document.querySelectorAll('select.massage-option');
+
+        function updateSummary() {
+            summarySoinsListEl.innerHTML = '';
+            let currentTotalPrice = 0;
+            let hasConsultationItem = false;
+            let itemsCount = 0;
+
+            allCheckboxes.forEach(checkbox => {
+                let itemValue = checkbox.value;
+                let itemInfo;
+
+                // Handle massages with selectable options
+                if (checkbox.classList.contains('massage-checkbox')) {
+                    if (checkbox.checked) {
+                        const selectId = checkbox.dataset.targetSelect;
+                        const selectElement = document.querySelector(`select.massage-option[data-value-base="${selectId}"]`);
+                        if (selectElement) {
+                            itemValue = selectElement.value; // Get value from selected option
+                        } else { // Fallback for massages without options if any were missed
+                           itemValue = selectId; // This case should ideally not happen if all are covered
+                        }
+                    } else {
+                        return; // Don't process if massage checkbox is not checked
+                    }
+                }
+                 else if (!checkbox.checked) { // For non-massage checkboxes
+                    return;
+                }
+
+
+                itemInfo = soinsData[itemValue];
+
+                if (itemInfo) {
+                    itemsCount++;
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('flex', 'items-center');
+
+                    let iconClass = "fa-spa"; // Default icon
+                    if (itemInfo.type === "cure") iconClass = "fa-star";
+                    else if (itemInfo.type === "rituel") iconClass = "fa-gem"; // Icon for Rituels
+                    else if (itemInfo.type === "thalasso") iconClass = "fa-water";
+                    else if (itemInfo.type === "massage") iconClass = "fa-hand-sparkles";
+                    else if (itemInfo.type === "esthetique") iconClass = "fa-paint-brush"; // Icon for Soins Esthétiques
+                    else if (itemInfo.type === "coiffure") iconClass = "fa-cut";
+                    else if (itemInfo.type === "access") iconClass = "fa-door-open";
+
+                    listItem.innerHTML = `<i class="fas ${iconClass} text-teal-500 mr-2 text-xs"></i><span class="flex-grow">${itemInfo.name}</span> <span class="font-semibold text-gray-600 ml-2 whitespace-nowrap">(${itemInfo.consultation ? 'Sur devis' : itemInfo.price + ' TND'})</span>`;
+                    summarySoinsListEl.appendChild(listItem);
+                    currentTotalPrice += itemInfo.price;
+                    if (itemInfo.consultation) {
+                        hasConsultationItem = true;
+                    }
+                }
+            });
+
+            if (itemsCount === 0) {
+                summarySoinsListEl.innerHTML = '<li class="text-gray-500 italic">Aucune sélection</li>';
+            }
+
+            totalPriceEl.textContent = `${currentTotalPrice} TND ${hasConsultationItem ? '+' : ''}`;
+        }
+
+        allCheckboxes.forEach(checkbox => {
+             // For massage checkboxes, the change event on the select will trigger update.
+            if (!checkbox.classList.contains('massage-checkbox')) {
+                checkbox.addEventListener('change', updateSummary);
+            }
+        });
+
+        massageOptionSelects.forEach(select => {
+            select.addEventListener('change', () => {
+                // Ensure the corresponding checkbox is checked if an option is selected
+                const checkboxValue = select.dataset.valueBase;
+                const associatedCheckbox = document.querySelector(`input.massage-checkbox[data-target-select="${checkboxValue}"]`);
+                if (associatedCheckbox) {
+                   // associatedCheckbox.checked = true; // Optional: auto-check if user changes select
+                }
+                updateSummary();
+            });
+        });
+
+        // Link massage checkboxes to their select elements
+        document.querySelectorAll('input.massage-checkbox').forEach(cb => {
+            cb.addEventListener('change', updateSummary);
+        });
+
+
+        confirmBookingBtn.addEventListener('click', () => {
+            const fullName = document.getElementById('full_name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const selectedDateValue = selectedDateField.value;
+
+            confirmationMessageEl.classList.add('hidden');
+
+            if (!selectedDateValue) {
+                alert("Veuillez sélectionner une date pour votre visite.");
+                selectedDateField.focus();
+                return;
+            }
+
+            let totalSelectedItems = 0;
+            document.querySelectorAll('input[type="checkbox"].checkbox-custom:checked').forEach(() => totalSelectedItems++);
+
+            if (totalSelectedItems === 0) {
+                 alert("Veuillez sélectionner au moins un soin, une cure ou un accès.");
+                 document.getElementById('choices-catalogue-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                 return;
+            }
+
+            if (!fullName.trim() || !email.trim() || !phone.trim()) {
+                alert("Veuillez remplir tous les champs de coordonnées obligatoires (*).");
+                    if (!fullName.trim()) document.getElementById('full_name').focus();
+                    else if (!email.trim()) document.getElementById('email').focus();
+                    else document.getElementById('phone').focus();
+                return;
+            }
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Veuillez entrer une adresse email valide.");
+                document.getElementById('email').focus();
+                return;
+            }
+
+            confirmationMessageEl.textContent = "Votre demande de réservation a été envoyée ! Nous vous contacterons bientôt pour confirmer les détails.";
+            confirmationMessageEl.classList.remove('hidden');
+
+            console.log("Demande de Réservation Envoyée (simulation) :");
+            console.log("Date:", selectedDateValue);
+            let selectedItemsForLog = [];
+            document.querySelectorAll('input[type="checkbox"].checkbox-custom').forEach(checkbox => {
+                if (checkbox.checked) {
+                    let itemValue = checkbox.value;
+                     if (checkbox.classList.contains('massage-checkbox')) {
+                        const selectId = checkbox.dataset.targetSelect;
+                        const selectElement = document.querySelector(`select.massage-option[data-value-base="${selectId}"]`);
+                        if (selectElement) itemValue = selectElement.value;
+                    }
+                    if(soinsData[itemValue]) selectedItemsForLog.push(soinsData[itemValue].name);
+                }
+            });
+            console.log("Sélections:", selectedItemsForLog);
+            console.log("Nom:", fullName, "Email:", email, "Tel:", phone);
+            console.log("Demandes spéciales:", document.getElementById('requests').value);
+            console.log("Total Estimé:", totalPriceEl.textContent);
+        });
+
+        updateSummary(); // Initial call
+        document.getElementById('currentYearFooter').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

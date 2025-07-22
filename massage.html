@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Massages du Monde - Royal Elyssa Thalasso & Spa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Définition des polices et des couleurs pour une maintenance facile */
+        :root {
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --color-primary: #0d9488; /* Teal-600 */
+            --color-primary-dark: #0f766e; /* Teal-700 */
+            --color-secondary: #f59e0b; /* Amber-500 */
+            --color-secondary-dark: #d97706; /* Amber-600 */
+            --color-background: #FBF9F6;
+            --color-text: #4a4a4a;
+            --color-heading: #1e293b; /* Slate-800 */
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            scroll-behavior: smooth;
+        }
+
+        .font-playfair { font-family: var(--font-display); }
+
+        /* Styles pour les titres pour une cohérence accrue */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            color: var(--color-heading);
+            font-weight: 700;
+        }
+
+        /* Arrière-plan de l'en-tête avec un dégradé subtil pour une meilleure lisibilité */
+        .page-header-bg {
+            background-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.1) 100%), url('http://www.royalelyssa.com/media/filer_public_thumbnails/filer_public/8a/7f/8a7fe845-ed09-4da8-a776-d54ec1475a65/massage.jpg__600x306_q85_crop_subsampling-2_upscale.jpg');
+            background-size: cover;
+            background-position: center 30%; /* Ajuste la position pour un meilleur cadrage */
+        }
+
+        /* Effet de survol amélioré pour les cartes */
+        .massage-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .massage-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        /* Ajustement des @apply pour les intégrer directement dans le HTML ou les garder pour des composants complexes */
+        .btn {
+            @apply font-semibold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2;
+        }
+        .btn-primary {
+            @apply btn bg-teal-600 hover:bg-teal-700 text-white focus:ring-teal-500;
+        }
+        .btn-secondary {
+            @apply btn bg-amber-500 hover:bg-amber-600 text-white focus:ring-amber-500;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAV BAR - Reste sticky et responsive -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="text-2xl font-playfair font-bold text-teal-700">
+                    Royal Elyssa <span class="text-amber-500">Spa</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Accueil</a>
+                    <a href="#catalog" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Catalogue</a>
+                    <a href="#" class="text-amber-500 font-semibold border-b-2 border-amber-500 pb-1">Massages</a>
+                    <a href="#reserve" class="btn-primary !py-2 !px-5 !text-sm">Réserver</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-amber-500 focus:outline-none">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200">
+            <a href="#home" class="block px-6 py-3 text-gray-600 hover:bg-teal-50 hover:text-amber-500 transition-colors duration-200">Accueil</a>
+            <a href="#catalog" class="block px-6 py-3 text-gray-600 hover:bg-teal-50 hover:text-amber-500 transition-colors duration-200">Catalogue</a>
+            <a href="#" class="block px-6 py-3 text-amber-500 bg-teal-50 font-semibold">Massages</a>
+            <a href="#reserve" class="block px-6 py-3 text-gray-600 hover:bg-teal-50 hover:text-amber-500 transition-colors duration-200">Réserver</a>
+        </div>
+    </nav>
+
+    <!-- HEADER - Titre plus impactant et design épuré -->
+    <header class="page-header-bg text-white py-28 md:py-40">
+        <div class="container mx-auto px-6 text-center">
+            <div class="bg-black/50 backdrop-blur-sm p-8 md:p-12 rounded-xl inline-block">
+                <h1 class="font-playfair text-4xl sm:text-5xl md:text-6xl font-extrabold mb-3 tracking-tight">Massages du Monde</h1>
+                <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto font-light">
+                    Un voyage sensoriel à travers des rituels ancestraux pour une harmonie retrouvée du corps et de l'esprit.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto px-4 md:px-6 py-16">
+        <!-- Fil d'Ariane -->
+        <div class="text-sm text-gray-500 mb-10">
+            <a href="#home" class="hover:text-amber-500 transition-colors">Accueil</a> &gt; <span>Massages du Monde</span>
+        </div>
+
+        <!-- Introduction -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl md:text-4xl font-playfair text-teal-700 mb-4">Une Evasion sur Mesure</h2>
+            <p class="text-lg leading-relaxed text-gray-600">
+                Nos thérapeutes expertes vous transportent à travers des techniques issues des traditions du monde entier. Chaque soin est une expérience unique, conçue pour dénouer vos tensions, apaiser votre esprit et revitaliser votre corps.
+            </p>
+        </div>
+
+        <!-- Grille des Massages - Générée dynamiquement par JS -->
+        <div id="massage-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            <!-- Les cartes de massage seront injectées ici par JavaScript -->
+        </div>
+
+         <!-- Section 'Quel Massage Choisir ?' -->
+        <section class="mt-24 py-16 bg-white rounded-2xl shadow-sm">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                     <h2 class="text-3xl md:text-4xl font-playfair text-teal-700 mb-4">Comment Choisir Votre Rituel Idéal ?</h2>
+                     <p class="text-lg leading-relaxed text-gray-600 mb-12">
+                         Notre équipe est à votre écoute pour vous guider vers le soin qui répondra parfaitement à vos besoins et envies du moment.
+                     </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 text-center text-gray-700">
+                     <div class="bg-teal-50/50 p-8 rounded-xl hover:shadow-lg transition-shadow duration-300">
+                         <div class="flex items-center justify-center bg-amber-400 rounded-full w-16 h-16 mx-auto mb-5 shadow-inner">
+                            <i class="fas fa-spa fa-2x text-white"></i>
+                         </div>
+                         <h4 class="text-xl font-bold mb-2">Détente Absolue</h4>
+                         <p>Californien, Pierres Chaudes, Ayurvédique.</p>
+                     </div>
+                     <div class="bg-teal-50/50 p-8 rounded-xl hover:shadow-lg transition-shadow duration-300">
+                         <div class="flex items-center justify-center bg-amber-400 rounded-full w-16 h-16 mx-auto mb-5 shadow-inner">
+                            <i class="fas fa-dumbbell fa-2x text-white"></i>
+                         </div>
+                         <h4 class="text-xl font-bold mb-2">Tensions Musculaires</h4>
+                         <p>Suédois, Balinais, Réflexologie.</p>
+                     </div>
+                     <div class="bg-teal-50/50 p-8 rounded-xl hover:shadow-lg transition-shadow duration-300">
+                          <div class="flex items-center justify-center bg-amber-400 rounded-full w-16 h-16 mx-auto mb-5 shadow-inner">
+                            <i class="fas fa-lightbulb fa-2x text-white"></i>
+                          </div>
+                         <h4 class="text-xl font-bold mb-2">Regain d'Énergie</h4>
+                         <p>Balinais, Ayurvédique, Suédois.</p>
+                     </div>
+                </div>
+                 <div class="text-center mt-12">
+                     <a href="#contact" class="btn-secondary"><i class="fas fa-phone-alt mr-2"></i>Contacter nos Experts</a>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-800 text-gray-300 py-16 mt-20">
+        <div class="container mx-auto px-6 text-center">
+            <a href="#home" class="text-3xl font-playfair font-bold text-white hover:text-amber-400 transition mb-4 inline-block">
+                Royal Elyssa <span class="text-amber-400">Thalasso & Spa</span>
+            </a>
+            <p class="mb-2 text-gray-400">Route Touristique, BP 242, Skanes, 5000 Monastir, Tunisie</p>
+            <p class="mb-6 text-gray-400">Tél : (+216) 73 520 520 | Email : info@royalelyssa.com</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-tripadvisor"></i></a>
+            </div>
+            <p class="text-sm text-gray-500">&copy; <span id="currentYearFooter"></span> Royal Elyssa Thalasso & Spa. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+    // --- GESTION DES DONNÉES DE SOINS ---
+    // Centraliser les données facilite la mise à jour et la maintenance.
+    const massagesData = [
+        {
+            id: 'californien',
+            title: 'Massage Californien Apaisant',
+            imgSrc: 'https://www.thalasso.com/uploads/media/massage-californien-corps-5ee8c401d72b9.webp',
+            intensityIcon: 'fa-hand-paper',
+            intensityText: 'Douce à Moyenne',
+            description: 'Caractérisé par de longs mouvements fluides, lents et enveloppants, ce massage invite à un lâcher-prise total pour une relaxation physique et psychique profonde.',
+            benefits: ['Réduction du stress et de l\'anxiété', 'Soulagement des tensions musculaires', 'Amélioration de la circulation', 'Favorise un sommeil réparateur'],
+            focus: 'Ensemble du corps, dos et épaules.',
+            options: [
+                { duration: 60, price: 120 },
+                { duration: 90, price: 170 }
+            ]
+        },
+        {
+            id: 'balinais',
+            title: 'Massage Balinais Exotique',
+            imgSrc: 'https://lejadespa.com/wp-content/uploads/2023/09/Le-Massage-Balinais.jpg',
+            intensityIcon: 'fa-hand-rock',
+            intensityText: 'Moyenne à Forte',
+            description: 'Ce soin traditionnel indonésien combine pétrissage, acupression et étirements doux pour rééquilibrer les flux d\'énergie et procurer une sensation de vitalité.',
+            benefits: ['Dénoue les tensions profondes', 'Stimule la circulation, détoxifie', 'Apporte vitalité et énergie', 'Améliore la souplesse'],
+            focus: 'Ensemble du corps, méridiens d\'énergie.',
+            options: [
+                { duration: 75, price: 150 }
+            ]
+        },
+        {
+            id: 'pierres-chaudes',
+            title: 'Massage aux Pierres Chaudes',
+            imgSrc: 'https://www.guide-piscine.fr/medias/image/le-massage-aux-pierres-chaudes-7198-1200-800.jpg',
+            intensityIcon: 'fa-fire',
+            intensityText: 'Chaleur Relaxante',
+            description: 'Des pierres de basalte lisses et chauffées sont utilisées pour masser. La chaleur pénètre en profondeur pour décontracter les muscles et apaiser l\'esprit.',
+            benefits: ['Relaxation musculaire et mentale extrême', 'Soulagement des douleurs chroniques', 'Améliore circulation et détoxification', 'Réduit stress, améliore sommeil'],
+            focus: 'Ensemble du corps, action profonde de la chaleur.',
+            options: [
+                { duration: 90, price: 180 }
+            ]
+        },
+        {
+            id: 'suedois',
+            title: 'Massage Suédois Dynamisant',
+            imgSrc: 'https://www.dolcebellezza.fr/acheter/wp-content/uploads/2017/05/massage-suedois.jpg',
+            intensityIcon: 'fa-running',
+            intensityText: 'Moyenne à Forte',
+            description: 'Technique dynamique utilisant des manœuvres fermes comme le pétrissage et la friction. Idéal pour soulager les courbatures et optimiser la récupération musculaire.',
+            benefits: ['Relâche les nœuds musculaires', 'Améliore la circulation sanguine', 'Tonifie et raffermit les muscles', 'Procure une sensation de vigueur'],
+            focus: 'Muscles principaux, dos, jambes.',
+            options: [
+                { duration: 60, price: 130 },
+                { duration: 90, price: 180 }
+            ]
+        },
+        {
+            id: 'reflexologie',
+            title: 'Réflexologie Plantaire',
+            imgSrc: 'https://semeusedeveil.fr/wp-content/uploads/2023/06/histoire-reflexologie.jpg',
+            intensityIcon: 'fa-shoe-prints',
+            intensityText: 'Points de Pression',
+            description: 'Basé sur la stimulation de points réflexes sur les pieds, ce soin vise à rétablir l\'équilibre énergétique du corps et à soulager divers maux.',
+            benefits: ['Relaxe profondément l\'ensemble du corps', 'Soulage les tensions et le stress', 'Améliore la circulation et le drainage', 'Stimule les fonctions vitales'],
+            focus: 'Pieds (points réflexes).',
+            options: [
+                { duration: 45, price: 90 },
+                { duration: 60, price: 120 }
+            ]
+        },
+        {
+            id: 'ayurvedique',
+            title: 'Massage Ayurvédique Abhyanga',
+            imgSrc: 'https://img.passeportsante.net/1200x675/2021-04-30/i101911-massage-abhyanga.webp',
+            intensityIcon: 'fa-oil-can',
+            intensityText: 'Huiles Chaudes',
+            description: 'Issu de la médecine indienne, ce massage à l\'huile chaude harmonise les énergies vitales (doshas) par des mouvements amples et rythmés pour une revitalisation complète.',
+            benefits: ['Nourrit la peau et les tissus', 'Élimination des toxines', 'Apaise le système nerveux', 'Augmente l\'énergie vitale (Prana)'],
+            focus: 'Ensemble du corps, avec des huiles spécifiques.',
+            options: [
+                { duration: 75, price: 160 }
+            ]
+        }
+    ];
+
+    /**
+     * Crée le code HTML pour une carte de massage à partir d'un objet de données.
+     * @param {object} massage - L'objet contenant les informations du massage.
+     * @returns {string} Le code HTML de la carte.
+     */
+    function createMassageCard(massage) {
+        // Génère le HTML pour les options de prix/durée
+        const optionsHtml = massage.options.map(opt =>
+            `<div class="flex justify-between items-center text-lg">
+                <span class="text-gray-600">${opt.duration} min</span>
+                <span class="font-bold text-teal-600">${opt.price} TND</span>
+            </div>`
+        ).join('');
+
+        // Génère le HTML pour la liste des bienfaits
+        const benefitsHtml = massage.benefits.map(benefit =>
+            `<li class="flex items-start">
+                <i class="fas fa-check-circle text-amber-500 mt-1 mr-2 flex-shrink-0"></i>
+                <span>${benefit}</span>
+            </li>`
+        ).join('');
+
+        return `
+            <div class="massage-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full group">
+                <div class="overflow-hidden">
+                    <img src="${massage.imgSrc}" alt="Image illustrant le ${massage.title}" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Indisponible';">
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-bold font-playfair mb-3">${massage.title}</h3>
+                    <div class="inline-flex items-center bg-teal-50 text-teal-700 text-xs font-semibold mb-4 px-3 py-1 rounded-full w-fit">
+                        <i class="fas ${massage.intensityIcon} mr-2"></i> ${massage.intensityText}
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-5 flex-grow">${massage.description}</p>
+
+                    <h4 class="font-bold text-gray-800 mb-3">Principaux Bienfaits :</h4>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-5">
+                        ${benefitsHtml}
+                    </ul>
+
+                    <div class="mt-auto pt-5 border-t border-gray-200">
+                        <div class="space-y-2 mb-5">
+                            ${optionsHtml}
+                        </div>
+                        <a href="reserve.html?massage=${massage.id}" class="btn-primary w-full text-center block">
+                           <i class="fas fa-calendar-check mr-2"></i> Réserver ce Soin
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // --- SCRIPTS D'INITIALISATION ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // Génère et affiche les cartes de massage
+        const grid = document.getElementById('massage-grid');
+        if (grid) {
+            massagesData.forEach(massage => {
+                grid.innerHTML += createMassageCard(massage);
+            });
+        }
+
+        // Script pour le menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Script pour l'année en cours dans le footer
+        const yearSpan = document.getElementById('currentYearFooter');
+        if(yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+    });
+    </script>
+</body>
+</html>

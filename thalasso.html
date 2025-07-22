@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soins Thalassothérapie - Royal Elyssa Thalasso & Spa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Définition de la palette de design pour une cohérence parfaite */
+        :root {
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --color-primary: #0d9488; /* Teal-600 */
+            --color-secondary: #f59e0b; /* Amber-500 */
+            --color-background: #FBF9F6;
+            --color-text: #4a4a4a;
+            --color-heading: #1e293b; /* Slate-800 */
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            scroll-behavior: smooth;
+        }
+
+        .font-playfair { font-family: var(--font-display); }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            color: var(--color-heading);
+            font-weight: 700;
+        }
+
+        /* En-tête avec un effet de superposition et parallaxe */
+        .page-header-bg {
+            background-image: linear-gradient(to top, rgba(10, 50, 60, 0.7) 0%, rgba(10, 50, 60, 0.2) 100%), url('https://images.unsplash.com/photo-1599569956362-7e6924c1656f?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Cartes de soins avec une animation de survol raffinée */
+        .thalasso-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .thalasso-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+        }
+
+        /* Styles des boutons */
+        .btn {
+            @apply font-semibold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2;
+        }
+        .btn-primary {
+            @apply btn bg-teal-600 hover:bg-teal-700 text-white focus:ring-teal-500;
+        }
+        .btn-secondary {
+            @apply btn bg-amber-500 hover:bg-amber-600 text-white focus:ring-amber-500;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAV BAR (identique pour la cohérence du site) -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="text-2xl font-playfair font-bold text-teal-700">
+                    Royal Elyssa <span class="text-amber-500">Spa</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="acceuil.html" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Accueil</a>
+                    <a href="catalogue-complet.html" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Catalogue</a>
+                    <a href="#" class="text-amber-500 font-semibold border-b-2 border-amber-500 pb-1">Thalassothérapie</a>
+                    <a href="reserve.html" class="btn-primary !py-2 !px-5 !text-sm">Réserver</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-amber-500 focus:outline-none">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200">
+             <a href="acceuil.html" class="block px-6 py-3 text-gray-600 hover:bg-teal-50 hover:text-amber-500 transition-colors duration-200">Accueil</a>
+            <a href="catalogue-complet.html" class="block px-6 py-3 text-gray-600 hover:bg-teal-50 hover:text-amber-500 transition-colors duration-200">Catalogue</a>
+            <a href="#" class="block px-6 py-3 text-amber-500 bg-teal-50 font-semibold">Thalassothérapie</a>
+            <a href="reserve.html" class="block px-6 py-3 text-gray-600 hover:bg-teal-50 hover:text-amber-500 transition-colors duration-200">Réserver</a>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header-bg text-white py-28 md:py-40">
+        <div class="container mx-auto px-6 text-center">
+            <div class="bg-black/50 backdrop-blur-sm p-8 md:p-12 rounded-xl inline-block">
+                <h1 class="font-playfair text-4xl sm:text-5xl md:text-6xl font-extrabold mb-3 tracking-tight">Thalassothérapie</h1>
+                <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto font-light">
+                    Plongez dans les bienfaits millénaires de l'eau de mer pour une revitalisation profonde.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto px-4 md:px-6 py-16">
+        <div class="text-sm text-gray-500 mb-10">
+            <a href="acceuil.html" class="hover:text-amber-500 transition-colors">Accueil</a> &gt; <span>Thalassothérapie</span>
+        </div>
+
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl md:text-4xl font-playfair text-teal-700 mb-4">Le Pouvoir Curatif de la Mer</h2>
+            <p class="text-lg leading-relaxed text-gray-600">
+                Nos soins utilisent de l'eau de mer fraîchement puisée, des algues riches en minéraux et des boues marines pour vous offrir une expérience régénérante unique, conçue pour harmoniser le corps et l'esprit.
+            </p>
+        </div>
+
+        <!-- Grille des Soins - Générée dynamiquement -->
+        <div id="thalasso-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            <!-- Les cartes de soins thalasso seront injectées ici -->
+        </div>
+
+        <!-- Section Engagements Qualité -->
+        <section class="mt-24 py-16 bg-white rounded-2xl shadow-sm">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                     <h2 class="text-3xl md:text-4xl font-playfair text-teal-700 mb-4">Nos Engagements Qualité</h2>
+                     <p class="text-lg leading-relaxed text-gray-600 mb-12">
+                         Votre bien-être est notre priorité. Nous nous engageons à vous offrir une expérience exceptionnelle.
+                     </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center bg-teal-100 rounded-full w-20 h-20 mb-4">
+                            <i class="fas fa-water fa-2x text-teal-600"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Eau de Mer Pure</h4>
+                        <p class="text-sm">Eau fraîchement puisée et contrôlée pour garantir ses propriétés thérapeutiques.</p>
+                    </div>
+                     <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center bg-teal-100 rounded-full w-20 h-20 mb-4">
+                            <i class="fas fa-leaf fa-2x text-teal-600"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Produits Naturels</h4>
+                        <p class="text-sm">Sélection rigoureuse d'algues, boues marines et huiles 100% naturelles.</p>
+                    </div>
+                     <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center bg-teal-100 rounded-full w-20 h-20 mb-4">
+                            <i class="fas fa-users fa-2x text-teal-600"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Personnel Qualifié</h4>
+                        <p class="text-sm">Une équipe d'hydrothérapeutes et d'experts à votre entière écoute.</p>
+                    </div>
+                     <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center bg-teal-100 rounded-full w-20 h-20 mb-4">
+                            <i class="fas fa-shield-alt fa-2x text-teal-600"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Hygiène Stricte</h4>
+                        <p class="text-sm">Protocoles de sécurité rigoureux pour un environnement sain et serein.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-800 text-gray-300 py-16 mt-20">
+        <div class="container mx-auto px-6 text-center">
+            <a href="#home" class="text-3xl font-playfair font-bold text-white hover:text-amber-400 transition mb-4 inline-block">
+                Royal Elyssa <span class="text-amber-400">Thalasso & Spa</span>
+            </a>
+            <p class="mb-2 text-gray-400">Route Touristique, BP 242, Skanes, 5000 Monastir, Tunisie</p>
+            <p class="mb-6 text-gray-400">Tél : (+216) 73 520 520 | Email : info@royalelyssa.com</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-tripadvisor"></i></a>
+            </div>
+            <p class="text-sm text-gray-500">&copy; <span id="currentYearFooter"></span> Royal Elyssa Thalasso & Spa. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+    // --- GESTION CENTRALISÉE DES SOINS THALASSO ---
+    const thalassoData = [
+        {
+            id: 'bain-hydromassant',
+            title: 'Bain Hydromassant aux Essences Marines',
+            imgSrc: 'https://placehold.co/600x400/26a69a/ffffff?text=Bain+Hydromassant',
+            typeIcon: 'fas fa-tint',
+            typeText: 'Hydrothérapie',
+            description: 'Laissez-vous envelopper par des milliers de bulles massantes dans une eau de mer chauffée, enrichie d\'huiles essentielles relaxantes ou tonifiantes.',
+            benefits: ['Relaxation musculaire profonde', 'Amélioration de la circulation', 'Réduction du stress', 'Hydratation de la peau'],
+            duration: 30,
+            price: 50
+        },
+        {
+            id: 'enveloppement-algues',
+            title: 'Enveloppement d\'Algues Reminéralisantes',
+            imgSrc: 'https://placehold.co/600x400/00897b/ffffff?text=Enveloppement+d\'Algues',
+            typeIcon: 'fas fa-leaf',
+            typeText: 'Enveloppement',
+            description: 'Votre corps est enduit d\'algues chaudes, riches en oligo-éléments, favorisant l\'élimination des toxines et la reminéralisation.',
+            benefits: ['Détoxification profonde', 'Reminéralisation intense', 'Soulagement des douleurs', 'Action amincissante'],
+            duration: 45,
+            price: 70
+        },
+        {
+            id: 'douche-affusion',
+            title: 'Douche à Affusion Vivifiante',
+            imgSrc: 'https://placehold.co/600x400/00695c/ffffff?text=Douche+à+Affusion',
+            typeIcon: 'fas fa-shower',
+            typeText: 'Hydrothérapie',
+            description: 'Allongé(e), une fine pluie d\'eau de mer chaude balaie votre corps pour une détente incomparable et une stimulation de la microcirculation.',
+            benefits: ['Relaxation du système nerveux', 'Amélioration de la circulation', 'Tonification de la peau', 'Effet apaisant'],
+            duration: 20,
+            price: 40
+        },
+        {
+            id: 'gommage-sels-marins',
+            title: 'Gommage aux Sels Marins & Huiles',
+            imgSrc: 'https://placehold.co/600x400/4db6ac/ffffff?text=Gommage+Corporel',
+            typeIcon: 'fas fa-gem',
+            typeText: 'Exfoliation',
+            description: 'Un soin exfoliant qui élimine les cellules mortes et affine le grain de peau, laissant la peau incroyablement douce et lumineuse.',
+            benefits: ['Peau douce et lisse', 'Meilleure absorption des produits', 'Circulation activée', 'Sensation de fraîcheur'],
+            duration: 30,
+            price: 55
+        },
+        {
+            id: 'hydrojet',
+            title: 'Hydrojet Relaxant (Lit Massant)',
+            imgSrc: 'https://placehold.co/600x400/00796b/ffffff?text=Hydrojet+Relaxant',
+            typeIcon: 'fas fa-bed',
+            typeText: 'Massage à Sec',
+            description: 'Allongé(e) sur un matelas d\'eau chaude, des jets sous pression massent l\'ensemble du corps sans vous mouiller pour une détente puissante.',
+            benefits: ['Soulage les tensions musculaires', 'Améliore la circulation', 'Réduit stress et fatigue', 'Détente sans contact direct'],
+            duration: 25,
+            price: 60
+        },
+        {
+            id: 'pressotherapie',
+            title: 'Pressothérapie Drainage Lymphatique',
+            imgSrc: 'https://placehold.co/600x400/004d40/ffffff?text=Pressothérapie',
+            typeIcon: 'fas fa-shoe-prints',
+            typeText: 'Drainage',
+            description: 'Ce soin utilise des bottes gonflables pour exercer des pressions douces et stimuler la circulation lymphatique et sanguine.',
+            benefits: ['Réduit les jambes lourdes', 'Améliore le drainage', 'Aide à combattre la cellulite', 'Favorise l\'élimination des toxines'],
+            duration: 30,
+            price: 65
+        }
+    ];
+
+    /**
+     * Crée le code HTML pour une carte de soin thalasso.
+     */
+    function createThalassoCard(soin) {
+        const benefitsHtml = soin.benefits.map(benefit =>
+            `<li class="flex items-start"><i class="fas fa-check-circle text-amber-500 mt-1 mr-2 flex-shrink-0"></i><span>${benefit}</span></li>`
+        ).join('');
+
+        return `
+            <div class="thalasso-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full group">
+                <div class="overflow-hidden relative">
+                    <img src="${soin.imgSrc}" alt="Image pour ${soin.title}" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Indisponible';">
+                    <div class="absolute top-3 right-3 bg-white/80 backdrop-blur-sm text-teal-800 text-xs font-semibold px-3 py-1 rounded-full flex items-center shadow">
+                        <i class="${soin.typeIcon} mr-1.5"></i> ${soin.typeText}
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-bold font-playfair mb-2">${soin.title}</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-5 flex-grow">${soin.description}</p>
+                    <h4 class="font-bold text-gray-800 mb-3">Principaux Bienfaits :</h4>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-6">${benefitsHtml}</ul>
+                    <div class="mt-auto pt-5 border-t border-gray-200">
+                        <div class="flex justify-between items-center text-lg mb-5">
+                            <span class="text-gray-600">${soin.duration} min</span>
+                            <span class="font-bold text-teal-600">${soin.price} TND</span>
+                        </div>
+                        <a href="reserve.html?soin=${soin.id}" class="btn-primary w-full text-center block"><i class="fas fa-calendar-check mr-2"></i> Réserver ce Soin</a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // --- SCRIPTS D'INITIALISATION ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const thalassoGrid = document.getElementById('thalasso-grid');
+        if (thalassoGrid) {
+            thalassoData.forEach(soin => {
+                thalassoGrid.innerHTML += createThalassoCard(soin);
+            });
+        }
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        const yearSpan = document.getElementById('currentYearFooter');
+        if (yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+    });
+    </script>
+</body>
+</html>

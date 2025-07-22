@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue Complet des Soins - Royal Elyssa Thalasso & Spa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --color-primary: #0d9488; /* Teal-600 */
+            --color-secondary: #f59e0b; /* Amber-500 */
+            --color-background: #FBF9F6;
+            --color-text: #4a4a4a;
+            --color-heading: #1e293b; /* Slate-800 */
+        }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            scroll-behavior: smooth;
+        }
+        .font-playfair { font-family: var(--font-display); }
+        h1, h2, h3, h4, h5 { font-family: var(--font-display); color: var(--color-heading); font-weight: 700; }
+        .catalogue-header-bg {
+            background-image: linear-gradient(to top, rgba(10, 50, 60, 0.7) 0%, rgba(10, 50, 60, 0.2) 100%), url('https://images.unsplash.com/photo-1544161515-cfd836b08094?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* --- Animations d'en-tête --- */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Nouvelle animation pour les lettres du titre */
+        @keyframes letter-anim {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .animation-delay-500 { animation-delay: 500ms; }
+
+        /* Style pour les lettres animées */
+        #main-title span {
+            display: inline-block;
+            opacity: 0;
+            animation: letter-anim 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        #table-of-contents {
+            @apply bg-white/70 backdrop-blur-sm border border-gray-200/50 p-6 rounded-xl shadow-sm sticky top-24;
+        }
+        #table-of-contents ul li a {
+            @apply block py-2 text-gray-600 hover:text-amber-600 border-l-2 border-transparent hover:border-amber-500 pl-3 transition-all duration-200;
+        }
+        #table-of-contents ul li a.active {
+            @apply text-amber-600 font-semibold border-amber-500 bg-amber-50/50;
+        }
+        .category-title {
+            @apply font-playfair text-3xl md:text-4xl text-teal-700 pt-8 mb-4 pb-3 border-b-2 border-amber-300/70 flex items-center;
+        }
+        .category-title i {
+            @apply mr-4 text-2xl text-amber-500;
+        }
+        .category-description {
+            @apply text-gray-600 mb-12 text-lg leading-relaxed max-w-3xl;
+        }
+
+        .soin-card-vertical {
+            @apply bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 ease-in-out flex flex-col;
+        }
+        .soin-card-vertical:hover {
+            @apply shadow-2xl transform -translate-y-2;
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(135deg);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+             <a href="acceuil.html" class="text-2xl font-playfair font-bold text-teal-700">
+                Royal Elyssa <span class="text-amber-500">Spa</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="acceuil.html" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Accueil</a>
+                <a href="#" class="text-amber-500 font-semibold border-b-2 border-amber-500 pb-1">Catalogue</a>
+                <a href="reserve.html" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 px-5 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5 text-sm">Réserver un Soin</a>
+            </div>
+             <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-amber-500 focus:outline-none"><i class="fas fa-bars fa-lg"></i></button>
+            </div>
+        </div>
+         <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200">
+            <a href="acceuil.html" class="block px-6 py-3 text-gray-600 hover:bg-teal-50 hover:text-amber-500 transition-colors duration-200">Accueil</a>
+            <a href="#" class="block px-6 py-3 text-amber-500 bg-teal-50 font-semibold">Catalogue</a>
+            <a href="reserve.html" class="block px-6 py-3 text-gray-600 hover:bg-teal-50 hover:text-amber-500 transition-colors duration-200">Réserver</a>
+        </div>
+    </nav>
+
+    <header class="catalogue-header-bg text-white py-24 md:py-36">
+        <div class="container mx-auto px-6 text-center">
+            <div class="bg-black/50 backdrop-blur-sm p-8 md:p-12 rounded-xl inline-block animate-fade-in">
+                <h1 id="main-title" class="font-playfair text-4xl sm:text-5xl md:text-6xl font-extrabold mb-3 tracking-tight">Notre Univers de Soins</h1>
+                <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto font-light opacity-0 animate-fade-in-up animation-delay-500">
+                    Plongez dans un monde de bien-être et découvrez nos rituels d'exception conçus pour harmoniser le corps et l'esprit.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 md:px-6 py-16">
+        <div class="lg:flex lg:space-x-12">
+            <aside class="lg:w-1/4 lg:block hidden">
+                <div id="table-of-contents">
+                    <h3 class="text-xl font-bold mb-4">Notre Catalogue</h3>
+                    <ul id="toc-list" class="space-y-1">
+                        <!-- Le sommaire sera généré ici par JavaScript -->
+                    </ul>
+                </div>
+            </aside>
+
+            <div id="catalog-content" class="lg:w-3/4">
+                <!-- Les sections du catalogue seront injectées ici par JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-800 text-gray-300 py-16 mt-20">
+        <div class="container mx-auto px-6 text-center">
+             <a href="#home" class="text-3xl font-playfair font-bold text-white hover:text-amber-400 transition mb-4 inline-block">
+                Royal Elyssa <span class="text-amber-400">Thalasso & Spa</span>
+            </a>
+            <p class="mb-2 text-gray-400">Route Touristique, BP 242, Skanes, 5000 Monastir, Tunisie</p>
+            <p class="mb-6 text-gray-400">Tél : (+216) 73 520 520 | Email : info@royalelyssa.com</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors"><i class="fab fa-tripadvisor"></i></a>
+            </div>
+            <p class="text-sm text-gray-500">&copy; <span id="currentYearFooter"></span> Royal Elyssa Thalasso & Spa. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+    const catalogData = [
+        {
+            id: 'cures-signature',
+            title: 'Cures Signature',
+            icon: 'fas fa-star',
+            description: 'Des programmes holistiques conçus comme des invitations au voyage intérieur. Chaque cure est une promesse de transformation et de bien-être durable, orchestrée par nos experts.',
+            layout: 'grid-cols-1 gap-12', // Layout spécial pour les cures
+            items: [
+                {
+                    title: 'Cure Détente Absolue',
+                    img: 'https://placehold.co/600x400/80cbc4/004d40?text=Cure+Détente',
+                    desc: 'Une invitation au lâcher-prise total. Cette cure signature a été pensée comme une bulle de sérénité pour dénouer les tensions du corps et apaiser le flot des pensées.',
+                    details: '<strong>Le Rituel :</strong> Bain Hydromassant aux essences marines, Massage Californien signature (60 min), et Soin Visage Éclat Fondamental.',
+                    duration: 'Env. 2h30',
+                    price: '250 TND',
+                    value: '270 TND',
+                    expertTip: 'Idéale pour une première expérience spa ou pour déconnecter profondément du stress quotidien.'
+                },
+                {
+                    title: 'Cure Évasion Marine',
+                    img: 'https://placehold.co/600x400/4db6ac/004d40?text=Cure+Marine',
+                    desc: 'Puisez dans les trésors de la mer pour purifier votre organisme, recharger vos batteries et retrouver une vitalité exceptionnelle.',
+                    details: '<strong>Le Rituel :</strong> Enveloppement d\'Algues reminéralisantes, Douche à Affusion vivifiante, et Massage Balinais Énergisant (75 min).',
+                    duration: 'Env. 2h45',
+                    price: '240 TND',
+                    value: '260 TND',
+                    expertTip: 'Parfaite aux changements de saison ou pour combattre un état de fatigue passager.'
+                }
+            ]
+        },
+        {
+            id: 'thalassotherapie',
+            title: 'Thalassothérapie',
+            icon: 'fas fa-water',
+            description: 'L\'eau de mer, riche en oligo-éléments et minéraux, est au cœur de nos protocoles pour régénérer, apaiser et tonifier votre corps.',
+            layout: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+            items: [
+                { title: 'Bain Hydromassant', img: 'https://placehold.co/600x400/26a69a/ffffff?text=Bain', desc: 'Immergez-vous dans un bain d\'eau de mer pure où des jets massants ciblent chaque zone de tension. Une ode à la relaxation.', duration: '30 min', price: '50 TND' },
+                { title: 'Enveloppement d\'Algues', img: 'https://placehold.co/600x400/00897b/ffffff?text=Algues', desc: 'Un cocon de chaleur et d\'actifs marins pour détoxifier, reminéraliser et soulager les douleurs articulaires.', duration: '45 min', price: '70 TND' },
+                { title: 'Douche à Affusion', img: 'https://placehold.co/600x400/00695c/ffffff?text=Douche', desc: 'Une fine pluie d\'eau de mer chaude balaye votre corps, procurant un massage doux, relaxant et stimulant.', duration: '20 min', price: '40 TND' }
+            ]
+        },
+        {
+            id: 'massages',
+            title: 'Massages du Monde',
+            icon: 'fas fa-hand-sparkles',
+            description: 'Nos thérapeutes expertes vous convient à un voyage sensoriel unique, à travers des rituels de massages inspirés des traditions ancestrales.',
+             layout: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+            items: [
+                 { title: 'Massage Californien', img: 'https://placehold.co/600x400/81d4fa/002621?text=Californien', desc: 'De longs mouvements fluides et harmonieux qui enveloppent le corps pour une relaxation psychique et physique absolue.', duration: '60 min', price: '120 TND' },
+                 { title: 'Massage Balinais', img: 'https://placehold.co/600x400/4fc3f7/002621?text=Balinais', desc: 'Un rituel indonésien puissant alliant étirements doux et pressions profondes pour rééquilibrer les énergies.', duration: '75 min', price: '150 TND' },
+                 { title: 'Massage Pierres Chaudes', img: 'https://placehold.co/600x400/29b6f6/002621?text=Pierres+Chaudes', desc: 'La chaleur bienfaisante des pierres volcaniques se diffuse pour dénouer les tensions les plus tenaces.', duration: '90 min', price: '180 TND' }
+            ]
+        },
+         {
+            id: 'soins-esthetiques',
+            title: 'Soins Esthétiques',
+            icon: 'fas fa-paint-roller',
+            description: 'Révélez votre beauté naturelle grâce à notre gamme de soins personnalisés et produits de haute qualité.',
+            layout: 'grid-cols-1 md:grid-cols-2 gap-8',
+            items: [
+                { title: 'Soin Visage Éclat Hydratant', img: 'https://placehold.co/600x400/b3e5fc/002621?text=Visage+Éclat', desc: 'Un soin coup d\'éclat pour hydrater intensément et illuminer le teint.', duration: '60 min', price: '90 TND' },
+                { title: 'Soin Visage Anti-Âge', img: 'https://placehold.co/600x400/81d4fa/002621?text=Anti-Âge', desc: 'Un protocole expert ciblant les signes de l\'âge pour une peau visiblement rajeunie.', duration: '75 min', price: '160 TND' },
+                { title: 'Manucure Spa Complète', img: 'https://placehold.co/600x400/e1f5fe/002621?text=Manucure', desc: 'Un soin complet pour des mains douces et des ongles parfaits.', duration: '45 min', price: '60 TND' },
+                { title: 'Pédicure Royale', img: 'https://placehold.co/600x400/c5cae9/002621?text=Pédicure', desc: 'Un véritable bain de jouvence pour vos pieds, incluant gommage et modelage.', duration: '60 min', price: '75 TND' }
+            ]
+        },
+        {
+            id: 'faq',
+            title: 'Informations Pratiques',
+            icon: 'fas fa-info-circle',
+            description: 'Trouvez les réponses à vos questions les plus fréquentes pour préparer au mieux votre visite.',
+            isFaq: true,
+            items: [
+                { q: 'Comment réserver mes soins ?', a: 'Vous pouvez réserver via notre <a href="reserve.html" class="text-teal-600 hover:underline font-semibold">page de réservation</a>, par téléphone, ou à la réception du Spa. Nous recommandons de réserver à l\'avance.' },
+                { q: 'Que dois-je apporter ?', a: 'Nous fournissons peignoir, serviettes et chaussons. Pensez à votre maillot de bain pour les zones humides et une tenue de sport pour la salle de fitness.' },
+                { q: 'Quelle est votre politique d\'annulation ?', a: 'Veuillez nous informer de toute annulation au moins 24 heures à l\'avance. Des frais peuvent s\'appliquer pour les annulations tardives. Consultez nos conditions lors de la réservation.' },
+                { q: 'Puis-je offrir un bon cadeau ?', a: 'Absolument ! Nous proposons des bons cadeaux élégants pour le montant ou le soin de votre choix. Contactez notre réception pour plus d\'informations.' }
+            ]
+        }
+    ];
+
+    function createCureCard(item) {
+        const priceHtml = item.value
+            ? `<p class="font-playfair font-bold text-2xl text-teal-600">${item.price} <span class="text-base text-green-600 font-normal line-through">${item.value}</span></p>`
+            : `<p class="font-playfair font-bold text-2xl text-teal-600">${item.price}</p>`;
+
+        return `
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 ease-in-out flex flex-col md:flex-row mb-8 group">
+                <div class="md:w-5/12 overflow-hidden">
+                    <img src="${item.img}" alt="Image pour ${item.title}" class="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image';">
+                </div>
+                <div class="p-6 md:p-10 md:w-7/12 flex flex-col">
+                    <div>
+                        <h4 class="text-3xl font-bold mb-2">${item.title}</h4>
+                        <p class="text-gray-600 text-base mb-4 leading-relaxed">${item.desc}</p>
+                        <p class="text-sm text-gray-700 mb-4">${item.details}</p>
+                        ${item.expertTip ? `<div class="mt-4 p-4 bg-amber-50/70 border-l-4 border-amber-400 text-sm text-amber-900 italic">
+                            <h5 class="font-bold not-italic mb-1">Le Secret de l'Expert</h5>
+                            <p>${item.expertTip}</p>
+                        </div>` : ''}
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200/80 flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            ${priceHtml}
+                            ${item.duration ? `<p class="text-xs text-gray-500 mt-1">Durée approximative : ${item.duration}</p>` : ''}
+                        </div>
+                        <a href="reserve.html?soin=${item.title.toLowerCase().replace(/ /g, '-')}" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-6 rounded-full shadow hover:shadow-md transition duration-300 text-sm mt-4 sm:mt-0">Réserver cette Cure</a>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    function createCareCard(item) {
+        return `
+            <div class="soin-card-vertical group">
+                <div class="overflow-hidden">
+                    <img src="${item.img}" alt="Image pour ${item.title}" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/400x400/cccccc/ffffff?text=Image';">
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h4 class="text-2xl font-bold mb-2 flex-grow">${item.title}</h4>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">${item.desc}</p>
+                    <div class="mt-auto pt-4 border-t border-gray-200/80 flex justify-between items-center">
+                        <p class="text-sm text-gray-500">${item.duration}</p>
+                        <p class="font-playfair font-bold text-xl text-teal-600">${item.price}</p>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    function createFaqItem(item) {
+        return `
+            <div class="faq-item bg-white p-5 rounded-lg shadow-sm mb-3 border border-gray-200/70">
+                <div class="faq-question font-semibold text-gray-700 cursor-pointer flex justify-between items-center text-lg">
+                    <span>${item.q}</span>
+                    <i class="fas fa-plus faq-icon transition-transform duration-300 text-teal-500"></i>
+                </div>
+                <div class="faq-answer text-gray-600 text-sm mt-2 max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                    <div class="pt-2 border-t border-gray-200/60 mt-2">${item.a}</div>
+                </div>
+            </div>`;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const tocList = document.getElementById('toc-list');
+        const catalogContent = document.getElementById('catalog-content');
+
+        if (tocList && catalogContent) {
+            catalogData.forEach(category => {
+                tocList.innerHTML += `<li><a href="#${category.id}">${category.title}</a></li>`;
+
+                let sectionHtml = `
+                    <section id="${category.id}" class="mb-16">
+                        <h2 class="category-title"><i class="${category.icon}"></i>${category.title}</h2>
+                        <p class="category-description">${category.description}</p>
+                        <div class="grid ${category.layout || 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'}">`;
+
+                if (category.isFaq) {
+                    sectionHtml = sectionHtml.replace('<div class="grid...', ''); // remove grid for faq
+                    category.items.forEach(item => sectionHtml += createFaqItem(item));
+                } else if (category.id === 'cures-signature') {
+                     category.items.forEach(item => sectionHtml += createCureCard(item));
+                }
+                else {
+                    category.items.forEach(item => sectionHtml += createCareCard(item));
+                }
+
+                sectionHtml += '</div></section>';
+                catalogContent.innerHTML += sectionHtml;
+            });
+        }
+
+        // Nouvelle animation du titre par lettre
+        const mainTitle = document.getElementById('main-title');
+        if (mainTitle) {
+            const text = mainTitle.textContent;
+            const letters = text.split('');
+            mainTitle.innerHTML = ''; // Vider le contenu
+            letters.forEach((letter, index) => {
+                const span = document.createElement('span');
+                span.innerHTML = letter === ' ' ? '&nbsp;' : letter;
+                span.style.animationDelay = `${index * 50}ms`;
+                mainTitle.appendChild(span);
+            });
+        }
+
+        document.getElementById('currentYearFooter').textContent = new Date().getFullYear();
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const wasOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item.open').forEach(openItem => {
+                    openItem.classList.remove('open');
+                    openItem.querySelector('.faq-answer').style.maxHeight = "0";
+                });
+                if (!wasOpen) {
+                    item.classList.add('open');
+                    const answer = item.querySelector('.faq-answer');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+
+        const tocLinks = document.querySelectorAll('#toc-list a');
+        const sections = document.querySelectorAll('#catalog-content section[id]');
+        const onScroll = () => {
+            let currentSection = '';
+            sections.forEach(section => {
+                if (pageYOffset >= section.offsetTop - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+    });
+    </script>
+</body>
+</html>
